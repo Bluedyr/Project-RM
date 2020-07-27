@@ -10,6 +10,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Grapple")]
 public class Grapple : Ability{
 
+    public LineRenderer ropeRenderer;
+    
     Transform cameraTransform;
     public LayerMask excludePlayer;
 
@@ -27,15 +29,18 @@ public class Grapple : Ability{
     public float minSpeed = 1.5f;
     public float maxSpeed = 15;
 
+    public float wallOffset = 1f;
+
     AbilityController ac;
 
     public override void Initialise(GameObject obj) {
         ac = obj.GetComponent<AbilityController>();
         pc = obj.GetComponent<PlayerController>();
+        ropeRenderer = pc.GetComponent<LineRenderer>();
         cameraTransform = obj.transform.GetChild(0);//not sure if this works
 
         onCooldown = false;
-
+        ropeRenderer.enabled = false;
     }
 
     public override void Update() {
@@ -66,12 +71,13 @@ public class Grapple : Ability{
 
     public override void OnHold() {
 
-        
         //dont care about animations just yet. get functionality first
         if (hitDetect) {//by changing velocity, we can make the player faster during the grapple
 
 
             //do shooting rope here
+            ropeRenderer.enabled = true;
+            
 
             //if rope reached hit point do below
 
@@ -79,7 +85,10 @@ public class Grapple : Ability{
             pc.enableGravity = false;
             float distance = Vector3.Distance(hit.point, cameraTransform.position);
 
-            if (distance > 0.6f) {
+            
+            ropeRenderer.SetPosition(1, hitPoint);
+
+            if (distance > wallOffset) {
                 //speed is going to be equal to the inverse distance or min speed
                 Vector3 direction = Vector3.Normalize(hit.point - cameraTransform.position);
                
@@ -98,6 +107,10 @@ public class Grapple : Ability{
         else {
             //nothing
         }
+        if (ac.isGrappling) {
+            Debug.Log("hi");
+            ropeRenderer.SetPosition(0, cameraTransform.position + cameraTransform.forward * ropeOrigin.z + cameraTransform.up * ropeOrigin.y + cameraTransform.right * ropeOrigin.x);
+        }
 
     }
 
@@ -115,6 +128,7 @@ public class Grapple : Ability{
             ac.isGrappling = false;
             onCooldown = true;
             currentTime = cooldown;
+            ropeRenderer.enabled = false;
         }
 
     }

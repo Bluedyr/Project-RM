@@ -16,13 +16,15 @@ MonoBehaviour:
   description: Pulls user to the target location
   sound: {fileID: 0}
   cooldown: 2
-  currentTime: 1.0080422
-  onCooldown: 0
+  currentTime: 0.4547877
+  onCooldown: 1
+  ropeRenderer: {fileID: 0}
   excludePlayer:
     serializedVersion: 2
     m_Bits: 823
-  ropeOrigin: {x: 0, y: 0, z: 0}
+  ropeOrigin: {x: 0.3, y: -0.28, z: 0.5}
   ropeDist: 1000
   grappleSpeed: 2.5
   minSpeed: 1
   maxSpeed: 50
+  wallOffset: 0.7

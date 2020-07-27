@@ -55,19 +55,19 @@ public class EnemyVision : MonoBehaviour{
                 //raycast to each player "bone"
                 //We only raycast the camera is in view. My thinking is that it will seem more fair to the player (i.e poking from behind corner slightly won't get you caught unless you can see the enemy)
                 if (Vector2.Angle(npcUp, playerUp) <= upFOV) {
-                    print("Found u");
+                    //print("Found u");
                 }
                 else {
-                    print("lost");
+                    //print("lost");
                 }
 
             }
             else {
-                print("lost");
+                //print("lost");
             }
         }
         else {
-            print("player too far");
+            //print("player too far");
         }
 
         
