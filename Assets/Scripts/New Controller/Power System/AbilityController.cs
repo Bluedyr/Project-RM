@@ -27,7 +27,7 @@ public class AbilityController : MonoBehaviour
     void Start(){
         selectedAbility = 0;
         
-        print("Selected Ability: " + abilities[selectedAbility].name);
+        //print("Selected Ability: " + abilities[selectedAbility].name);
 
         for (int i = 0; i < abilities.Length; i++) {
             abilities[i].Initialise(this.gameObject);
@@ -37,7 +37,7 @@ public class AbilityController : MonoBehaviour
     // Update is called once per frame
     void Update() {
         bool selectedOnCooldown = abilities[selectedAbility].onCooldown;
-        Debug.Log(abilities[selectedAbility].name +" cooldown: " +selectedOnCooldown);
+        //Debug.Log(abilities[selectedAbility].name +" cooldown: " +selectedOnCooldown);
         if (Input.GetKeyDown(useAbility)&&!selectedOnCooldown) {
             abilities[selectedAbility].OnDown();
         }
@@ -61,7 +61,7 @@ public class AbilityController : MonoBehaviour
                 }
             }
             
-            print("Selected Ability: " +abilities[selectedAbility].name);
+            //print("Selected Ability: " +abilities[selectedAbility].name);
         }
 
         for (int i = 0; i < abilities.Length; i++) {
