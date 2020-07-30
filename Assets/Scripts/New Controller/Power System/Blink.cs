@@ -99,7 +99,7 @@ public class Blink : Ability{
             
         }
         testspawn.transform.position = blinkPoint;
-        testspawn.transform.eulerAngles=Vector3.zero;
+        
 
     }
 

@@ -16,9 +16,9 @@ MonoBehaviour:
   description: Teleports the user a short distance.
   sound: {fileID: 0}
   cooldown: 3
-  currentTime: 1.4319983
+  currentTime: 0.8375661
   onCooldown: 1
-  test: {fileID: 871885108452743475, guid: 632bc5e91610fc64ebbd9495de0eedb3, type: 3}
+  test: {fileID: 2365574045820577525, guid: 4c2f8631272105843bf87522e1e4bc48, type: 3}
   blinkDistance: 15
   excludePlayer:
     serializedVersion: 2
