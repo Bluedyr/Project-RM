@@ -17,7 +17,8 @@ public class Grapple : Ability{
 
     PlayerController pc;
 
-    public Vector3 ropeOrigin;//where the rope comes from in relation to the player
+    Transform abilityOrigin;//where the rope comes
+    
     
 
     RaycastHit hit;
@@ -34,11 +35,12 @@ public class Grapple : Ability{
     AbilityController ac;
 
     public override void Initialise(GameObject obj) {
+       
         ac = obj.GetComponent<AbilityController>();
         pc = obj.GetComponent<PlayerController>();
         ropeRenderer = pc.GetComponent<LineRenderer>();
         cameraTransform = obj.transform.GetChild(0);//not sure if this works
-
+        abilityOrigin = cameraTransform.GetChild(0);
         onCooldown = false;
         ropeRenderer.enabled = false;
     }
@@ -83,10 +85,11 @@ public class Grapple : Ability{
 
             ac.isGrappling = true;
             pc.enableGravity = false;
+
             float distance = Vector3.Distance(hit.point, cameraTransform.position);
 
-            
-            ropeRenderer.SetPosition(1, hitPoint);
+
+            ropeRenderer.SetPosition(1, pc.transform.InverseTransformPoint(hit.point));
 
             if (distance > wallOffset) {
                 //speed is going to be equal to the inverse distance or min speed
@@ -109,7 +112,7 @@ public class Grapple : Ability{
         }
         if (ac.isGrappling) {
             Debug.Log("hi");
-            ropeRenderer.SetPosition(0, cameraTransform.position + cameraTransform.forward * ropeOrigin.z + cameraTransform.up * ropeOrigin.y + cameraTransform.right * ropeOrigin.x);
+            ropeRenderer.SetPosition(0, pc.transform.InverseTransformPoint(abilityOrigin.position));
         }
 
     }

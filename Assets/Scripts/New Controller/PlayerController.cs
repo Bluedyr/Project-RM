@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour {
            
             if (grounded&&groundSnap) {
                 
-                //this part is where I do slope snapping I think
+                //this part is where I do slope snapping
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, -transform.up, out hit, groundSnapDistance,excludePlayer)) {
                     
