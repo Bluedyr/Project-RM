@@ -1,4 +1,12 @@
 # Rogue
 
 ## What is it?  
-A video game inspired by the likes of Dishonored, Prey, Thief
+A prototype for a high mobility stealth game
+
+## Implemented Features  
+* Movement
+* Jumping
+* Climbing
+* Teleporting
+* Grappling
+* Leaning
